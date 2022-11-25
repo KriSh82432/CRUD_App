@@ -1,11 +1,16 @@
 <?php
 
-require 'core/Application.php';
+$pdo = new PDO('mysql:dbname=test;host=mysql', 'krishna', 'KriShna824@32', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
-$app = new Application();
+$query = $pdo->query('INSERT INTO PCLeadInfo (Id, LeadID) VALUES (3, 234);');
 
-$app->router->get('/', function(){
-    return 'Hello WOrld';
-});
+/*$query->execute();
+$result = $query->fetchAll();
 
-$app->run();
+foreach ($result as $key) {
+    echo $key['Id'];
+}*/
+
+$result = $query->fetch();
+
+echo $result;
