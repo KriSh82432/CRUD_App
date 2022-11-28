@@ -6,7 +6,7 @@ services:
             - "8080:80"
         volumes:
             - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
-            - ./public:/krishna/public
+            - ./public:/crud_php/public
         depends_on:
             - mysql
         restart: always
@@ -15,7 +15,7 @@ services:
             context: .
             dockerfile: PHP.Dockerfile
         volumes:
-            - ./public:/krishna/public
+            - ./public:/crud_php/public
         restart: always
     mysql:
         image: mariadb:latest
@@ -27,7 +27,7 @@ services:
         volumes:
             - site1:/var/lib/mysql
         ports:
-            - 3306:3306
+            - 3307:3306
         restart: always
 volumes:
     site1: {}
