@@ -68,6 +68,16 @@ $model = new model;
             </form>
         </div>
         <?php if ($model->user){ ?>
+            <?php if ($model->user){ ?>
+            <?php 
+                $query = 'SELECT * FROM ppm
+                                    WHERE username = :user';
+                $statement = $conn->prepare($query);
+                $statement->bindValue(':user', $model->user);
+                $statement->execute();
+                $results = $statement->fetchAll();
+            ?>
+            <?php if(!empty($results)) { ?>
             <?php 
                 $query = 'DELETE FROM ppm
                             WHERE username = :user';   
@@ -82,7 +92,13 @@ $model = new model;
                 else{
                     echo '<script>alert("Some error occured while inserting data!!!")</script>';
                 } 
-            ?>
+
+                $statement->closeCursor(); ?>
+                <?php } else{ ?>
+                    <p style="text-align: center;">Sorry no results found. Try entering your username again.</p>
+                <?php } ?>    
+        <?php } else {?> 
+        <?php } ?>
         <?php }?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>      
     </div>
