@@ -38,3 +38,5 @@ echo 'opcache.max_accelerated_files=4000'; \
 echo 'opcache.revalidate_freq=2'; \
 echo 'opcache.fast_shutdown=1'; \
 } > /usr/local/etc/php/conf.d/opcache-recommended.ini
+
+COPY . /var/www/html
