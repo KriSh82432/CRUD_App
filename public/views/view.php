@@ -75,6 +75,7 @@ $model = new model;
                     $statement->bindValue(':user', $model->user);
                     $statement->execute();
                     $results = $statement->fetchAll();
+                    var_dump($results);exit;
                     $statement->closeCursor();
             ?>
             <?php if(!empty($results)) {
